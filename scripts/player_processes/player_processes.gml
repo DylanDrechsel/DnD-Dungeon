@@ -3,6 +3,8 @@ function reset_variables() {
 	right = 0;
 	up = 0;
 	down = 0;
+	vmove = 0;
+	hmove = 0;
 }
 
 function get_input() {
@@ -13,20 +15,20 @@ function get_input() {
 }
 
 function calc_movement() {
-	var _hmove = right - left;
-	var _vmove = down - up;
+	hmove = right - left;
+	vmove = down - up;
 	
-	if _hmove != 0 or _vmove != 0 {
+	if hmove != 0 or vmove != 0 {
 		// get direction we are moving
-		var _dir = point_direction(0, 0, _hmove, _vmove);
+		var _dir = point_direction(0, 0, hmove, vmove);
 		
 		// get distance we are moving
-		_hmove = lengthdir_x(walk_spd, _dir);
-		_vmove = lengthdir_y(walk_spd, _dir);
+		hmove = lengthdir_x(walk_spd, _dir);
+		vmove = lengthdir_y(walk_spd, _dir);
 		
 		// add movement to players position
-		x += _hmove;
-		y += _vmove;
+		x += hmove;
+		y += vmove;
 	}
 }
 
@@ -50,5 +52,15 @@ function collision() {
 	
 	repeat(_disy) {
 		if !place_meeting(x, y + sign(_ty - y), o_solid) y += sign(_ty - y);
+	}
+}
+
+function anim() {
+	if hmove != 0 or vmove != 0 {
+		sprite_index = s_player_walk;	
+	}
+	
+	if hmove = 0 and vmove = 0 {
+		sprite_index = s_player_idle;	
 	}
 }
