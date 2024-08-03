@@ -31,7 +31,7 @@
   "origin":4,
   "parent":{
     "name":"Bow",
-    "path":"folders/Sprites/Weapons/Bow.yy",
+    "path":"folders/Entity/Player/Weapons/Bow.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

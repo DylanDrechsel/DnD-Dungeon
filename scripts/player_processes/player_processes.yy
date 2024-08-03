@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"player_processes",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Player",
+    "path":"folders/Entity/Player.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

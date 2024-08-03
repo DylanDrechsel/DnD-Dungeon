@@ -8,8 +8,8 @@
   "name":"o_arrow_explode",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Bow",
+    "path":"folders/Entity/Player/Weapons/Bow.yy",
   },
   "parentObjectId":null,
   "persistent":false,
