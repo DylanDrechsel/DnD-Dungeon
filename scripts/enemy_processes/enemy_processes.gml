@@ -1,3 +1,26 @@
+function calc_entity_movement() {
+	//@desc moves enemy and applies drag
+	
+	// apply movement
+	x += hsp;
+	y += vsp;
+	
+	// slowdown --> HSP and VSP approach 0 (ZERO) over time
+	hsp *= global.drag
+	vsp *= global.drag
+	
+	check_if_stopped();
+}
+
+function check_facing() {
+	// check witch way we are moving and set facing
+	if knockback_time <= 0 {
+		var _facing = sign(x - xprev);
+		if _facing != 0 facing = _facing;	
+	}
+
+}
+
 function check_for_player() {
 	// check if the player is close enough to start chasing them
 	var _dis = distance_to_object(o_player);
@@ -16,7 +39,7 @@ function check_for_player() {
 			calc_path_timer = calc_path_delay;
 		
 			// can we make a path to the player
-			if x == xprev and y = yprev var _type = 0 else var _type = 1
+			if (x == xprev and y == yprev) var _type = 0 else var _type = 1
 			var _found_player = mp_grid_path(global.mp_grid, path, x, y, o_player.x, o_player.y, _type);
 	
 			// start path if we can reach the player
@@ -36,27 +59,30 @@ function check_for_player() {
 function enemy_anim() {
 	switch(state) {
 		case STATES.IDLE:
-			sprite_index = s_idle
+			sprite_index = s_idle;
+			show_hurt();
 		break;
 		case STATES.MOVE:
-			sprite_index = s_walk
+			sprite_index = s_walk;
+			show_hurt();
 		break;
 		case STATES.ATTACK:
-			sprite_index = s_attack
+			sprite_index = s_attack;
 		break;
 		case STATES.DEAD:
-			sprite_index = s_dead
+			sprite_index = s_dead;
 		break;
 	}
+	// set depth
+	depth = -bbox_bottom;
 	
 	// update out previous position
 	xprev = x;
 	yprev = y
 }
 
-function check_facing() {
-	// check witch way we are moving and set facing
-	var _facing = sign(x - xperv);
+function show_hurt() {
+	//@desc shows the hurt sprite when being knocked back
 	
-	if _facing != 0 facing = _facing;
+	if knockback_time-- > 0 sprite_index = s_hurt
 }
