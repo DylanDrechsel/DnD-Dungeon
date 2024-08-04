@@ -43,8 +43,7 @@ function is_dead(_damage) {
 			}
 			return true;
 		}
-	}
-	return true;
+	} else return true;
 }
 
 function check_if_stopped() {
