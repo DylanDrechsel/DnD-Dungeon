@@ -1,7 +1,9 @@
 event_inherited()
 
-// player movement
+// player stats
 walk_spd = 1.5;
+hp_max = 10;
+hp = hp_max;
 
 // bow
 aim_dir = 0;
