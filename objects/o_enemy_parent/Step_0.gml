@@ -13,11 +13,13 @@ switch(state) {
 		enemy_anim();
 	break;
 	case STATES.KNOCKBACK:
-		calc_entity_movement();
+		calc_knockback_movement();
 		enemy_anim();
 	break;
 	case STATES.ATTACK:
 		calc_entity_movement();
+		perform_attack();
+		check_facing();
 		enemy_anim();
 	break;
 	case STATES.DEAD:

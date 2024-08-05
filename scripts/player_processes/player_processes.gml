@@ -54,9 +54,13 @@ function collision() {
 	x = xprevious;
 	y = yprevious;
 	
-	// get distance we want to move
-	var _disx = abs(_tx - x);
-	var _disy = abs(_ty - y);
+	// get max distance we want to move
+	var _disx = ceil(_tx - x);
+	var _disy = ceil(_ty - y);
+	
+	// ensures we are using integers if we are colliding in the x/y axis
+	if place_meeting(x + _disx * sign(_tx - x), y, o_solid) x = round(x);
+	if place_meeting(x, y + _disy * sign(_ty - y), o_solid) y = round(y);
 	
 	// move as far in x and y before hitting the solid
 	repeat(_disx) {
@@ -80,8 +84,8 @@ function anim() {
 
 function check_fire() {
 	if mouse_check_button(mb_left) {
-		if can_fire {
-			can_fire = false
+		if can_attack {
+			can_attack = false
 			alarm[0] = fire_rate
 			
 			var _dir = point_direction(x, y, mouse_x, mouse_y);

@@ -11,7 +11,7 @@ function damage_entity(_targetID, _sourceID, _damage, _time) {
 		path_end();
 		
 		// set knockback distance
-		if _dead var _dis = 4 else var _dis = 1
+		if _dead var _dis = 5 else var _dis = 3
 		var _dir = point_direction(_sourceID.x, _sourceID.y, x, y);
 		
 		hsp += lengthdir_x(_dis, _dir);
@@ -19,6 +19,8 @@ function damage_entity(_targetID, _sourceID, _damage, _time) {
 		calc_path_delay = _time;
 		alert = true;
 		knockback_time = _time;
+		if !_dead state = STATES.KNOCKBACK;
+		image_index = 0;
 		return _dead;
 	}
 }
