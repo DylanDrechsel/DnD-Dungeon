@@ -1,3 +1,8 @@
+// MACROS
+#macro CAN_ATTACK		0
+
+
+// ENUMS
 enum STATES {
 	IDLE,
 	MOVE,

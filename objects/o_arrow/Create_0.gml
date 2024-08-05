@@ -1,7 +1,7 @@
-damage = 5;
+damage = irandom_range(4, 7);
 range = 160;
 owner_id = noone;
-knockback_time = 1;
+knockback_time = 15;
 
 function arrow_die() {
 	// What happens when the arrow is destoryed
