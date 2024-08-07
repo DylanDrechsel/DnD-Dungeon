@@ -6,6 +6,9 @@ function damage_entity(_targetID, _sourceID, _damage, _time) {
 	//@arg  --> time			real	how long to knock back target
 	
 	with(_targetID) {
+		// take no damage while HURT Alarm is running tom avoid massive hits from all emenies at once
+		if alarm[HURT] > 0 exit;
+		
 		hp -= _damage;
 		var _dead = is_dead(_damage);
 		path_end();
@@ -19,6 +22,7 @@ function damage_entity(_targetID, _sourceID, _damage, _time) {
 		calc_path_delay = _time;
 		alert = true;
 		knockback_time = _time;
+		alarm[HURT] = hurt_time;
 		if !_dead state = STATES.KNOCKBACK;
 		image_index = 0;
 		return _dead;
@@ -40,6 +44,7 @@ function is_dead(_damage) {
 						// play sound
 					break;
 					case o_player:
+						if instance_exists(my_bow) instance_destroy(my_bow);
 						// player sound
 					break;
 			}

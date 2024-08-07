@@ -1,9 +1,15 @@
-var _depth = (aim_dir > 0 and aim_dir < 180)
+event_inherited();
 
-my_bow.depth = depth + _depth;
+// check if bow exist
+if instance_exists(my_bow) {
+	var _depth = (aim_dir > 0 and aim_dir < 180)
 
-my_bow.x = x + lengthdir_x(bow_dis, aim_dir);
-my_bow.y = y + lengthdir_y(bow_dis, aim_dir);
+	my_bow.depth = depth + _depth;
 
-// function to reset bow distance from 5 --> 11 at a rate of 13%
-bow_dis = lerp(bow_dis, 11, 0.13);
+	my_bow.x = x + lengthdir_x(bow_dis, aim_dir);
+	my_bow.y = y + lengthdir_y(bow_dis, aim_dir);
+
+	// function to reset bow distance from 5 --> 11 at a rate of 13%
+	bow_dis = lerp(bow_dis, 11, 0.13);
+}
+
