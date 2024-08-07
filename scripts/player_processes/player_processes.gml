@@ -5,6 +5,7 @@ function reset_variables() {
 	down = 0;
 	vmove = 0;
 	hmove = 0;
+	walk_spd = 1.5;
 }
 
 function get_input() {
@@ -22,6 +23,8 @@ function calc_movement() {
 	var _facing = (aim_dir < 90 or aim_dir > 270);
 	if _facing == 0 _facing = -1;
 	facing = _facing;
+	
+	if keyboard_check(vk_shift) walk_spd = sprint_spd;
 	
 	//if hmove != 0 facing = hmove;
 	

@@ -2,6 +2,7 @@ event_inherited()
 
 // player stats
 walk_spd = 1.5;
+sprint_spd = 2.25;
 hp_max = 10;
 hp = hp_max;
 
