@@ -38,6 +38,22 @@ function calc_movement() {
 		y += vmove;
 	}
 	
+	// apply knockback movement
+	x += hsp;
+	y += vsp;
+	
+	// apply drag to knockback
+	switch(state) {
+		default: var _drag = 0.15; break;
+		case STATES.DEAD: var _drag = 0.08; break;
+	}
+	hsp = lerp(hsp, 0, _drag);
+	vsp = lerp(vsp, 0, _drag);
+}
+
+function aim_bow() {
+	//@desc --> gets and sets the bow aim
+	
 	// finding the aim direction
 	aim_dir = point_direction(x, y, mouse_x, mouse_y);
 	
@@ -73,12 +89,18 @@ function collision() {
 }
 
 function anim() {
-	if hmove != 0 or vmove != 0 {
-		sprite_index = s_player_walk;	
-	}
-	
-	if hmove = 0 and vmove = 0 {
-		sprite_index = s_player_idle;	
+	switch(state) {
+		default:
+			if hmove != 0 or vmove != 0 {
+				sprite_index = s_player_walk;	
+			}
+			if hmove = 0 and vmove = 0 {
+				sprite_index = s_player_idle;	
+			}
+		break;
+		case STATES.DEAD:
+			sprite_index = s_player_dead;
+		break;
 	}
 }
 

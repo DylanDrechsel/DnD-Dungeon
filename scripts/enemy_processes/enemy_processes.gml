@@ -30,7 +30,7 @@ function calc_knockback_movement() {
 }
 
 function check_facing() {
-	// check witch way we are moving and set facing
+	//@desc --> check witch way we are moving and set facing
 	if knockback_time <= 0 {
 		var _facing = sign(x - xprev);
 		if _facing != 0 facing = _facing;	
@@ -39,7 +39,11 @@ function check_facing() {
 }
 
 function check_for_player() {
-	// check if the player is close enough to start chasing them
+	//@desc --> check if the player is close enough to start chasing them
+	
+	// ensures player is alive. If player is dead no need to run this code block
+	if o_player.state == STATES.DEAD exit;
+	
 	var _dis = distance_to_object(o_player);
 	//move_towards_point(o_player.x, o_player.y, 1);
 	
