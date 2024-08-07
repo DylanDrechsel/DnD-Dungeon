@@ -64,6 +64,8 @@
     {"id":{"name":"s_player_walk","path":"sprites/s_player_walk/s_player_walk.yy",},},
     {"id":{"name":"s_player","path":"sprites/s_player/s_player.yy",},},
     {"id":{"name":"s_solid","path":"sprites/s_solid/s_solid.yy",},},
+    {"id":{"name":"s_walls47_32x32","path":"sprites/s_walls47_32x32/s_walls47_32x32.yy",},},
+    {"id":{"name":"t_walls_47_32x32","path":"tilesets/t_walls_47_32x32/t_walls_47_32x32.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
