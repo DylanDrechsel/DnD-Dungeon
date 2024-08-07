@@ -57,6 +57,11 @@ for (var _yy = 0; _yy < _h; _yy++) {
 					instance_destroy(_inst_above);
 				}
 			}
+		} else {
+			// tile is empty so should we spawn an enemy
+			if random(1) <= 0.075 {
+				instance_create_layer(_xx * TS + TS / 2, _yy * TS + TS / 2, "Enemy", o_red_devil)	
+			}
 		}
 	}
 }
