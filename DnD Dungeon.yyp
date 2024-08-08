@@ -18,6 +18,7 @@
     {"$GMFolder":"","%Name":"Player","folderPath":"folders/Entity/Player.yy","name":"Player","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Weapons","folderPath":"folders/Entity/Player/Weapons.yy","name":"Weapons","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Bow","folderPath":"folders/Entity/Player/Weapons/Bow.yy","name":"Bow","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Bomb","folderPath":"folders/Entity/Player/Weapons/Bomb.yy","name":"Bomb","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -44,7 +45,7 @@
     {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},},
     {"id":{"name":"o_red_devil","path":"objects/o_red_devil/o_red_devil.yy",},},
     {"id":{"name":"o_solid","path":"objects/o_solid/o_solid.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"Dungeon","path":"rooms/Dungeon/Dungeon.yy",},},
     {"id":{"name":"enemy_processes","path":"scripts/enemy_processes/enemy_processes.yy",},},
     {"id":{"name":"entity_processes","path":"scripts/entity_processes/entity_processes.yy",},},
     {"id":{"name":"macros_enums","path":"scripts/macros_enums/macros_enums.yy",},},
@@ -70,7 +71,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"Dungeon","path":"rooms/Dungeon/Dungeon.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
