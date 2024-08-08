@@ -5,7 +5,6 @@ function reset_variables() {
 	down = 0;
 	vmove = 0;
 	hmove = 0;
-	walk_spd = 1.5;
 }
 
 function get_input() {
@@ -24,8 +23,7 @@ function calc_movement() {
 	if _facing == 0 _facing = -1;
 	facing = _facing;
 	
-	if keyboard_check(vk_shift) walk_spd = sprint_spd;
-	
+	check_sprint()
 	//if hmove != 0 facing = hmove;
 	
 	if hmove != 0 or vmove != 0 {
@@ -33,8 +31,8 @@ function calc_movement() {
 		var _dir = point_direction(0, 0, hmove, vmove);
 		
 		// get distance we are moving
-		hmove = lengthdir_x(walk_spd, _dir);
-		vmove = lengthdir_y(walk_spd, _dir);
+		hmove = lengthdir_x(movement_spd, _dir);
+		vmove = lengthdir_y(movement_spd, _dir);
 		
 		// add movement to players position
 		x += hmove;
@@ -125,4 +123,25 @@ function check_fire() {
 			}
 		}
 	}
+}
+
+function check_sprint() {
+	if alarm[STAMINA_REGEN] <= 0 {
+		alarm[STAMINA_REGEN] = stamina_regen_time
+	}
+	
+	if keyboard_check(vk_shift) and stamina > 0 {
+		movement_spd = sprint_spd;
+		stamina--;
+	}
+	
+	if !keyboard_check(vk_shift) or stamina <= 0 {
+		movement_spd = walk_spd;
+	}
+}
+
+function show_staminabar() {
+	//@desc --> show stamina bar above players head
+	
+	draw_healthbar(x-17, y-26, x+17, y-24, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);		
 }

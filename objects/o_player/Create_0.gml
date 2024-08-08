@@ -1,10 +1,16 @@
 event_inherited()
 
 // player stats
+movement_spd = 1.5;
 walk_spd = 1.5;
 sprint_spd = 2.25;
 hp_max = 10;
 hp = hp_max;
+stamina_max = 100;
+stamina = stamina_max;
+
+// regen time
+stamina_regen_time = 60;
 
 // bow
 aim_dir = 0;
