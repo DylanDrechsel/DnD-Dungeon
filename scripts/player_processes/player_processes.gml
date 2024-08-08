@@ -5,7 +5,6 @@ function reset_variables() {
 	down = 0;
 	vmove = 0;
 	hmove = 0;
-	walk_spd = 1.5;
 }
 
 function get_input() {
@@ -24,8 +23,7 @@ function calc_movement() {
 	if _facing == 0 _facing = -1;
 	facing = _facing;
 	
-	if keyboard_check(vk_shift) walk_spd = sprint_spd;
-	
+	check_sprint()
 	//if hmove != 0 facing = hmove;
 	
 	if hmove != 0 or vmove != 0 {
@@ -33,8 +31,8 @@ function calc_movement() {
 		var _dir = point_direction(0, 0, hmove, vmove);
 		
 		// get distance we are moving
-		hmove = lengthdir_x(walk_spd, _dir);
-		vmove = lengthdir_y(walk_spd, _dir);
+		hmove = lengthdir_x(movement_spd, _dir);
+		vmove = lengthdir_y(movement_spd, _dir);
 		
 		// add movement to players position
 		x += hmove;
@@ -125,4 +123,36 @@ function check_fire() {
 			}
 		}
 	}
+}
+
+function check_sprint() {
+	if alarm[STAMINA_REGEN] <= 0 {
+		alarm[STAMINA_REGEN] = stamina_regen_time
+	}
+	
+	if keyboard_check(vk_shift) and stamina > 0 {
+		movement_spd = sprint_spd;
+		stamina--;
+	}
+	
+	if !keyboard_check(vk_shift) or stamina <= 0 {
+		movement_spd = walk_spd;
+	}
+}
+
+function show_staminabar() {
+	//@desc --> show stamina bar above players head
+	
+	var _x1 = x - 7;
+	var _x2 = x + 7;
+	var _y1 = y - 26;
+	var _y2 = y - 24;
+	
+	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
+	draw_set_halign(fa_center); // Center align text horizontally
+	draw_set_valign(fa_middle); // Center align text vertically
+	draw_set_color(c_white);    // Set text color to white
+
+	// Draw the text on the health bar
+	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
 }

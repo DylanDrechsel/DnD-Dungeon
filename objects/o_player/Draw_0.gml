@@ -4,5 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
-//draw_text(x, y, facing);
+show_staminabar()
 
+//draw_text(x, y, movement_spd);
+//draw_text(x + 25, y + 25, "Stamina: " + string(stamina));
