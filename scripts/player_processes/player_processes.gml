@@ -143,5 +143,16 @@ function check_sprint() {
 function show_staminabar() {
 	//@desc --> show stamina bar above players head
 	
-	draw_healthbar(x-17, y-26, x+17, y-24, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);		
+	var _x1 = x - 7;
+	var _x2 = x + 7;
+	var _y1 = y - 26;
+	var _y2 = y - 24;
+	
+	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
+	draw_set_halign(fa_center); // Center align text horizontally
+	draw_set_valign(fa_middle); // Center align text vertically
+	draw_set_color(c_white);    // Set text color to white
+
+	// Draw the text on the health bar
+	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
 }
