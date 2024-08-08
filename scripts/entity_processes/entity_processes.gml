@@ -68,11 +68,19 @@ function show_healthbar() {
 		var _y2 = y - 14;
 		
 		draw_healthbar(_x1, _y1, _x2, _y2, hp/hp_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
-		draw_set_halign(fa_center); // Center align text horizontally
-		draw_set_valign(fa_middle); // Center align text vertically
-		draw_set_color(c_white);    // Set text color to white
+		show_text(hp, hp_max);
 
 		// Draw the text on the health bar
 		draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(hp) + " / " + string(hp_max));
 	}
+}
+
+function show_text(x, x_max) {
+	draw_set_halign(fa_center); // Center align text horizontally
+	draw_set_valign(fa_middle); // Center align text vertically
+	
+	// change color of text based on how much Stamina is left
+	if x / x_max >= 0.7 draw_set_color(c_green);
+	if x / x_max <= 0.69 and x / x_max >= 0.3 draw_set_color(c_yellow);
+	if x / x_max <= 0.29 and x / x_max >= 0 draw_set_color(c_red);
 }
