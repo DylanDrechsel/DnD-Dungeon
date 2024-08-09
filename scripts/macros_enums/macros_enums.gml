@@ -8,6 +8,9 @@
 // Enemy Alarms
 #macro ENEMY_DISAPPEAR		2
 
+// Text Alarms
+#macro DISPLAY_TOOLTIP		11
+
 
 // ENUMS
 enum STATES {

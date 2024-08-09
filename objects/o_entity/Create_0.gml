@@ -15,6 +15,9 @@ knockback_time = 0;
 // hurt frames --> No Damage can be taken
 hurt_time = 30;
 
-// Flash WHITE when game is taken
+// flash WHITE when game is taken
 flash_initial = 16;
 flash = flash_initial / 2;
+
+// show tooltip
+show_tooltip = false;

@@ -4,6 +4,7 @@ switch(state) {
 		reset_variables();
 		get_input();
 		calc_movement();
+		stamina_regen();
 		aim_bow();
 		check_fire();
 		check_bomb();
@@ -12,6 +13,7 @@ switch(state) {
 	case STATES.KNOCKBACK:
 		reset_variables();
 		calc_movement();
+		stamina_regen();
 		aim_bow();
 		if knockback_time-- <= 0  state = STATES.IDLE;
 		anim();

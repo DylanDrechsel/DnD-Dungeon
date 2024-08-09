@@ -155,13 +155,15 @@ function check_bomb() {
 	}
 }
 
-function check_sprint() {
-	//@desc --> checks if the player is able to sprint and if true applies increased movement speed
-	//		--> also drain stamina if the player is holding shift and also MOVING
+function stamina_regen() {
 	if alarm[STAMINA_REGEN] <= 0 {
 		alarm[STAMINA_REGEN] = stamina_regen_time
 	}
-	
+}
+
+function check_sprint() {
+	//@desc --> checks if the player is able to sprint and if true applies increased movement speed
+	//		--> also drain stamina if the player is holding shift and also MOVING
 	if keyboard_check(vk_shift) and stamina > 0 {
 		movement_spd = sprint_spd;
 		
@@ -176,13 +178,13 @@ function check_sprint() {
 
 function show_staminabar() {
 	//@desc --> show stamina bar above players head
-	var _x1 = x - 7;
-	var _x2 = x + 7;
-	var _y1 = y - 26;
-	var _y2 = y - 24;
+	var _x1 = x - 17;
+	var _x2 = x + 17;
+	var _y1 = y - 39;
+	var _y2 = y - 32;
 	
-	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
-	show_text(stamina, stamina_max);
+	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, c_olive, 0, 1, 1);
+	show_text(stamina, stamina_max, 0);
 	
 	// Draw the text on the health bar
 	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
