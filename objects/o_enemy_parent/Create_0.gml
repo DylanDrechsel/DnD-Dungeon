@@ -31,4 +31,6 @@ calc_path_delay = 30;
 calc_path_timer = irandom(60);
 // randomize image index for off set animation
 //image_index = irandom(10);
-image_index = irandom_range(-10, 10);
+image_index = irandom_range(-100, 100);
+// how long until the dead enemy disappears
+disappear_timer = 600;

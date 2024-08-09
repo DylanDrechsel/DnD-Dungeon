@@ -133,3 +133,10 @@ function show_hurt() {
 	
 	if knockback_time-- > 0 sprite_index = s_hurt
 }
+
+function disappear_enemy() {
+	//@desc --> if the dead enemy has existed for 120 seconds remove them
+	if alarm[ENEMY_DISAPPEAR] <= 0 {
+		alarm[ENEMY_DISAPPEAR] = disappear_timer;
+	}
+}

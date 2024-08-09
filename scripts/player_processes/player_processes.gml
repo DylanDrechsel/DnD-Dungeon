@@ -141,8 +141,9 @@ function check_fire() {
 
 function check_bomb() {
 	if mouse_check_button_pressed(mb_right) {
-		if can_throw_bomb {
+		if can_throw_bomb and stamina >= 15 {
 			can_throw_bomb = false;
+			stamina -= 15;
 			alarm[CAN_THROW_BOMB] = bomb_cooldown;
 			var _dir = point_direction(x, y, mouse_x, mouse_y);
 			var _inst = instance_create_layer(x, y, "Instances", o_bomb);

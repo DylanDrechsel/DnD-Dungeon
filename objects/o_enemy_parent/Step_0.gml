@@ -25,6 +25,7 @@ switch(state) {
 	case STATES.DEAD:
 		calc_entity_movement();
 		enemy_anim();
+		disappear_enemy();
 	break;
 }
 
