@@ -89,6 +89,18 @@ function collision() {
 	}
 }
 
+function collision_bounce() {
+	collision();
+	
+	// check if there is a solid 1 pixel in the horizontal direction we were moving
+	// if so reverse our hsp to move away from it instead
+	if place_meeting(x + sign(hsp), y, o_solid) hsp = -hsp;
+	
+	// check if there is a solid 1 pixel in the vertical direction we were moving
+	// if so reverse our vsp to move away from it instead
+	if place_meeting(x, y + sign(vsp), o_solid) vsp = -vsp;
+}
+
 function anim() {
 	switch(state) {
 		default:
@@ -103,6 +115,8 @@ function anim() {
 			sprite_index = s_player_dead;
 		break;
 	}
+	
+	depth = -bbox_bottom;
 }
 
 function check_fire() {
@@ -125,14 +139,33 @@ function check_fire() {
 	}
 }
 
+function check_bomb() {
+	if mouse_check_button_pressed(mb_right) {
+		if can_throw_bomb {
+			can_throw_bomb = false;
+			alarm[CAN_THROW_BOMB] = bomb_cooldown;
+			var _dir = point_direction(x, y, mouse_x, mouse_y);
+			var _inst = instance_create_layer(x, y, "Instances", o_bomb);
+			with (_inst) {
+				hsp = lengthdir_x(other.bomb_power, _dir);
+				vsp = lengthdir_y(other.bomb_power, _dir);
+			}
+		}
+	}
+}
+
 function check_sprint() {
+	//@desc --> checks if the player is able to sprint and if true applies increased movement speed
+	//		--> also drain stamina if the player is holding shift and also MOVING
 	if alarm[STAMINA_REGEN] <= 0 {
 		alarm[STAMINA_REGEN] = stamina_regen_time
 	}
 	
 	if keyboard_check(vk_shift) and stamina > 0 {
 		movement_spd = sprint_spd;
-		stamina--;
+		
+		// makes sure stamina only goes down when player is moving
+		if hmove != 0 or vmove != 0 stamina--;
 	}
 	
 	if !keyboard_check(vk_shift) or stamina <= 0 {
@@ -142,7 +175,6 @@ function check_sprint() {
 
 function show_staminabar() {
 	//@desc --> show stamina bar above players head
-	
 	var _x1 = x - 7;
 	var _x2 = x + 7;
 	var _y1 = y - 26;
@@ -151,7 +183,6 @@ function show_staminabar() {
 	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
 	show_text(stamina, stamina_max);
 	
-
 	// Draw the text on the health bar
 	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
 }
