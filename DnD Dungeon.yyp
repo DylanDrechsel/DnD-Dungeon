@@ -68,6 +68,7 @@
     {"id":{"name":"s_enemy_idle","path":"sprites/s_enemy_idle/s_enemy_idle.yy",},},
     {"id":{"name":"s_enemy_walk","path":"sprites/s_enemy_walk/s_enemy_walk.yy",},},
     {"id":{"name":"s_explosion","path":"sprites/s_explosion/s_explosion.yy",},},
+    {"id":{"name":"s_player_dash","path":"sprites/s_player_dash/s_player_dash.yy",},},
     {"id":{"name":"s_player_dead","path":"sprites/s_player_dead/s_player_dead.yy",},},
     {"id":{"name":"s_player_idle","path":"sprites/s_player_idle/s_player_idle.yy",},},
     {"id":{"name":"s_player_walk","path":"sprites/s_player_walk/s_player_walk.yy",},},

@@ -130,7 +130,6 @@ function perform_attack() {
 
 function show_hurt() {
 	//@desc --> shows the hurt sprite when being knocked back
-	
 	if knockback_time-- > 0 sprite_index = s_hurt
 }
 

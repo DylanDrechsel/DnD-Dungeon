@@ -5,6 +5,7 @@ function reset_variables() {
 	down = 0;
 	vmove = 0;
 	hmove = 0;
+	dash = false;
 }
 
 function get_input() {
@@ -12,6 +13,7 @@ function get_input() {
 	if keyboard_check(ord("S")) down = 1;
 	if keyboard_check(ord("D")) right = 1;
 	if keyboard_check(ord("W")) up = 1;
+	if keyboard_check_pressed(vk_space) dash = true;
 }
 
 function calc_movement() {
@@ -176,16 +178,15 @@ function check_sprint() {
 	}
 }
 
-function show_staminabar() {
-	//@desc --> show stamina bar above players head
-	var _x1 = x - 17;
-	var _x2 = x + 17;
-	var _y1 = y - 39;
-	var _y2 = y - 32;
-	
-	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, c_olive, 0, 1, 1);
-	show_text(stamina, stamina_max, 0);
-	
-	// Draw the text on the health bar
-	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
+function check_dash() {
+	if dash and can_dash {
+		state = STATES.DASH;
+		dash_timer = dash_timer_initial
+		
+		// get direction and distance we are moving
+		var _dir = point_direction(0, 0, hmove, vmove);
+		hsp = lengthdir_x(dash_spd, _dir);
+		vsp = lengthdir_y(dash_spd, _dir);
+		dash_arr = [];
+	}
 }

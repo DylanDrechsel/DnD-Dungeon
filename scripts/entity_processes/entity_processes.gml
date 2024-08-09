@@ -13,6 +13,9 @@ function damage_entity(_targetID, _sourceID, _damage, _time) {
 		var _dead = is_dead(_damage);
 		path_end();
 		
+		// was trying floating damage text
+		//alarm[DISPLAY_TOOLTIP] = 120
+		
 		// set knockback distance
 		if _dead var _dis = 5 else var _dis = 3
 		var _dir = point_direction(_sourceID.x, _sourceID.y, x, y);
@@ -73,6 +76,20 @@ function show_healthbar() {
 		// Draw the text on the health bar
 		draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(hp) + " / " + string(hp_max));
 	}
+}
+
+function show_staminabar() {
+	//@desc --> show stamina bar above players head
+	var _x1 = x - 17;
+	var _x2 = x + 17;
+	var _y1 = y - 39;
+	var _y2 = y - 32;
+	
+	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, c_olive, 0, 1, 1);
+	show_text(stamina, stamina_max, 0);
+	
+	// Draw the text on the health bar
+	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
 }
 
 function show_text(_x, _x_max, _color_changing_font) {
