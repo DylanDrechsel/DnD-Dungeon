@@ -19,6 +19,11 @@ fire_rate = 30;
 can_attack = true;
 arrow_speed = 8;
 
+// bomb
+can_throw_bomb = true; // can the player throw the bomb now?
+bomb_cooldown = 120;   // how long until the bomb is ready to throw again
+bomb_power = 8;		   // how far we throw the bomb
+
 my_bow = instance_create_layer(x, y, "Instances", o_bow);
 
 // ensures we can restart after death animaion
