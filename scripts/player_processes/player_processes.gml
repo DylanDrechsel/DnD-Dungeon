@@ -5,6 +5,7 @@ function reset_variables() {
 	down = 0;
 	vmove = 0;
 	hmove = 0;
+	dash = false;
 }
 
 function get_input() {
@@ -12,6 +13,7 @@ function get_input() {
 	if keyboard_check(ord("S")) down = 1;
 	if keyboard_check(ord("D")) right = 1;
 	if keyboard_check(ord("W")) up = 1;
+	if keyboard_check_pressed(vk_space) dash = true;
 }
 
 function calc_movement() {
@@ -155,13 +157,15 @@ function check_bomb() {
 	}
 }
 
-function check_sprint() {
-	//@desc --> checks if the player is able to sprint and if true applies increased movement speed
-	//		--> also drain stamina if the player is holding shift and also MOVING
+function stamina_regen() {
 	if alarm[STAMINA_REGEN] <= 0 {
 		alarm[STAMINA_REGEN] = stamina_regen_time
 	}
-	
+}
+
+function check_sprint() {
+	//@desc --> checks if the player is able to sprint and if true applies increased movement speed
+	//		--> also drain stamina if the player is holding shift and also MOVING
 	if keyboard_check(vk_shift) and stamina > 0 {
 		movement_spd = sprint_spd;
 		
@@ -174,16 +178,15 @@ function check_sprint() {
 	}
 }
 
-function show_staminabar() {
-	//@desc --> show stamina bar above players head
-	var _x1 = x - 7;
-	var _x2 = x + 7;
-	var _y1 = y - 26;
-	var _y2 = y - 24;
-	
-	draw_healthbar(_x1, _y1, _x2, _y2, stamina/stamina_max*100, $003300, $3232FF, $00B200, 0, 1, 1);
-	show_text(stamina, stamina_max);
-	
-	// Draw the text on the health bar
-	draw_text((_x1 + _x2) / 2, (_y1 + _y2) / 2, string(stamina) + " / " + string(stamina_max));
+function check_dash() {
+	if dash and can_dash {
+		state = STATES.DASH;
+		dash_timer = dash_timer_initial
+		
+		// get direction and distance we are moving
+		var _dir = point_direction(0, 0, hmove, vmove);
+		hsp = lengthdir_x(dash_spd, _dir);
+		vsp = lengthdir_y(dash_spd, _dir);
+		dash_arr = [];
+	}
 }

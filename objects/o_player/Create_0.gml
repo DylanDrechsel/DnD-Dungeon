@@ -24,6 +24,14 @@ can_throw_bomb = true; // can the player throw the bomb now?
 bomb_cooldown = 120;   // how long until the bomb is ready to throw again
 bomb_power = 8;		   // how far we throw the bomb
 
+// dash
+dash_spd = 4;
+dash_arr = [];
+can_dash = true;
+dash_cooldown = 120;
+dash_timer_initial = 15;
+dash_timer = dash_timer_initial;
+
 my_bow = instance_create_layer(x, y, "Instances", o_bow);
 
 // ensures we can restart after death animaion
