@@ -18,19 +18,19 @@ show_staminabar();
 
 //draw_text(x, y, movement_spd);
 //draw_text(x + 25, y + 25, "Stamina: " + string(stamina));
+draw_set_font(fnt_medium);
 
 if mouse_check_button_pressed(mb_right) and show_tooltip == false {
 	alarm[DISPLAY_TOOLTIP] = 60;
 	show_tooltip = true;
 }
 
+
 if !can_dash {
 	draw_text(x, y + 50, "Dash ready in " + string(round(alarm[CAN_DASH] / 10)));	
 }
 
 if show_tooltip == true {
-	//draw_set_font(fnt_medium);
-	
 	if can_throw_bomb and stamina < 15 {
 		draw_text(x, y, "Not enough stamina!");	
 	}
